@@ -41,7 +41,7 @@ export function SessionCard({ c }: { c: Content }) {
   // the artwork already prints the event name, so the week card leads with the
   // attendee instead of repeating it
   const title = week ? label : s.title.replace(/^(Session|Deep Dive)\s+\d+:\s*/i, '')
-  const mark = week ? 'WHOLE WEEK' : badge(s)
+  const mark = week ? '' : badge(s)
   // the artwork already prints the dates and the city, so the week card says
   // something the poster cannot: how much programme there is
   const when = week
@@ -62,12 +62,18 @@ export function SessionCard({ c }: { c: Content }) {
 
     const limit = parseFloat(getComputedStyle(card).getPropertyValue('--bmax')) || 1080
     // measure real content, not the decorative wash that hangs outside the block
+    // layout offsets, not client rects: the intro animation translates the
+    // block, and a rect read mid-flight reports the wrong bottom
     const contentBottom = () => {
       const kids = Array.from(body.children) as HTMLElement[]
       const last = kids[kids.length - 1]
-      const scale = card.getBoundingClientRect().width / 1080
-      const top = card.getBoundingClientRect().top
-      return (last.getBoundingClientRect().bottom - top) / scale
+      let y = 0
+      let node: HTMLElement | null = last
+      while (node && node !== card) {
+        y += node.offsetTop
+        node = node.offsetParent as HTMLElement | null
+      }
+      return y + last.offsetHeight
     }
 
     const fit = () => {
