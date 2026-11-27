@@ -9,7 +9,9 @@ export async function cardBlob(node: HTMLElement, background: string): Promise<B
   const rect = node.getBoundingClientRect()
   const declared = node.offsetWidth || rect.width
   const scale = declared / (Math.max(1, rect.width) * dpr)
-  const shot = await snapdom(node, { scale, backgroundColor: background })
+  // dpr 1 keeps the working canvas at the output size: a retina screen would
+  // otherwise rasterise four times the pixels and turn a second into half a minute
+  const shot = await snapdom(node, { scale, dpr: 1, backgroundColor: background })
   return shot.toBlob({ format: 'png' })
 }
 
