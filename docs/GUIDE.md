@@ -27,7 +27,7 @@ Four artworks, named 1 to 4, exactly as supplied:
 
 The session text sits in the clear band the organisers left between the title block and the partner banner. That band is 348 pixels tall on a 1080 card, which is why the title steps down from 48 to 34 pixels as it gets longer. A 121 character session title still fits three lines.
 
-The artwork is still. No drift, no animation.
+Artwork stays still: no drift, no animation.
 
 ## 🔳 The QR code
 
@@ -37,7 +37,7 @@ Always on, top right, pointing at the participant portal. It sits on a quiet zon
 
 Download PNG writes 1080 by 1080 in about a second, roughly 1 MB.
 
-The export is rendered from a second card that never carries the preview zoom, so the file is always 1080 square whatever the screen or the window size. Animation is off the table for now: the drifting artwork never looked settled enough.
+Export renders from a second card that never carries the preview zoom, so the file is always 1080 square whatever the screen or the window size. Animation is off the table for now: the drifting artwork never looked settled enough.
 
 Your name is optional. Fill it in and the card carries an Attending line; leave it empty for a clean card.
 
