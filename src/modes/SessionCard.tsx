@@ -70,23 +70,36 @@ export function SessionCard({ c }: { c: Content }) {
       return (last.getBoundingClientRect().bottom - top) / scale
     }
 
-    // the week card has no co-host line, so it can carry a bigger title
-    const start = week ? Math.round(SCALE[c.bg][0] * 1.15) : Math.max(titleSize(c.bg, title), SCALE[c.bg][0])
-    let size = start
-    heading.style.fontSize = `${size}px`
-    let guard = 0
-    while (contentBottom() > limit && size > 26 && guard < 40) {
-      size -= 1
+    const fit = () => {
+      body.style.paddingTop = '0px'
+      // the week card has no co-host line, so it can carry a bigger title
+      const start = week ? Math.round(SCALE[c.bg][0] * 1.15) : Math.max(titleSize(c.bg, title), SCALE[c.bg][0])
+      let size = start
       heading.style.fontSize = `${size}px`
-      guard += 1
+      let guard = 0
+      while (contentBottom() > limit && size > 26 && guard < 40) {
+        size -= 1
+        heading.style.fontSize = `${size}px`
+        guard += 1
+      }
+
+      // the week card has no co-host line, so the block would float at the top.
+      // Push it down to sit just above the partner banner instead.
+      if (week) {
+        const slack = limit - contentBottom() - 56
+        body.style.paddingTop = `${Math.max(0, Math.round(slack))}px`
+      }
     }
 
-    // the week card has no co-host line, so the block would float at the top.
-    // Push it down to sit just above the partner banner instead.
-    body.style.paddingTop = '0px'
-    if (week) {
-      const slack = limit - contentBottom() - 56
-      body.style.paddingTop = `${Math.max(0, Math.round(slack))}px`
+    fit()
+    // web fonts land after the first layout, and they change the metrics this
+    // block is fitted against, so fit again once they are in
+    let alive = true
+    document.fonts?.ready.then(() => {
+      if (alive) fit()
+    })
+    return () => {
+      alive = false
     }
   }, [c.sessionId, c.bg, title, week])
 
