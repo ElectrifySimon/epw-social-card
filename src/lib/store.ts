@@ -1,4 +1,4 @@
-import { Content } from './types'
+import { Content, DEFAULT_LABEL } from './types'
 import { sessions } from './programme'
 
 const KEY = 'epw-card:v1'
@@ -8,6 +8,7 @@ export function starterContent(): Content {
     sessionId: (sessions.find((s) => s.number === 1) ?? sessions[0])?.id ?? '',
     bg: 1,
     name: '',
+    label: DEFAULT_LABEL,
     showDayTheme: true,
   }
 }

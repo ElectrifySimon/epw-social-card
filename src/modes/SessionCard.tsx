@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef } from 'react'
-import { Content, EVENT } from '../lib/types'
+import { Content, DEFAULT_LABEL, EVENT } from '../lib/types'
 import { byId, cohostLine, dayFor, dayLabel } from '../lib/programme'
 import bg1 from '../assets/bg/bg-1.jpg'
 import bg2 from '../assets/bg/bg-2.jpg'
@@ -40,6 +40,7 @@ export function SessionCard({ c }: { c: Content }) {
   const mark = badge(s)
   const host = cohostLine(s)
   const name = c.name.trim()
+  const label = c.label.trim() || DEFAULT_LABEL
   const bodyRef = useRef<HTMLDivElement>(null)
 
   /**
@@ -89,7 +90,7 @@ export function SessionCard({ c }: { c: Content }) {
 
       {name ? (
         <div className="attend">
-          <p className="attend__label">I'm attending</p>
+          <p className="attend__label">{label}</p>
           <p className="attend__name">{name}</p>
         </div>
       ) : null}

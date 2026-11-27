@@ -39,7 +39,9 @@ Download PNG writes 1080 by 1080 in about a second, roughly 1 MB.
 
 Export renders from a second card that never carries the preview zoom, so the file is always 1080 square whatever the screen or the window size. Animation is off the table for now: the drifting artwork never looked settled enough.
 
-Your name is optional. Fill it in and the card carries an Attending line; leave it empty for a clean card.
+Your name is optional. Fill it in and the card carries a badge in the lower right; leave it empty for a clean card.
+
+The badge line above the name reads "I'm attending" by default and can be rewritten, so the same card works in another language or for a different label. Clearing the field brings the default back. Whatever you type is shown in capitals, which is how the badge is set.
 
 ## 🔄 Refreshing the programme
 

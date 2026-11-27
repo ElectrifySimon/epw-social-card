@@ -1,4 +1,4 @@
-import { Content, BGS, BgId, EVENT } from '../lib/types'
+import { Content, BGS, BgId, DEFAULT_LABEL, EVENT } from '../lib/types'
 import { SessionPicker } from './SessionPicker'
 
 type Props = {
@@ -55,6 +55,17 @@ export function Rail({ c, set, onPng, busy, toast }: Props) {
           value={c.name}
           placeholder="Leave empty for a clean card"
           onChange={(e) => set({ name: e.target.value })}
+        />
+        <label className="field__label" htmlFor="label" style={{ marginTop: 4 }}>
+          Badge text
+        </label>
+        <input
+          id="label"
+          type="text"
+          value={c.label}
+          placeholder={DEFAULT_LABEL}
+          maxLength={28}
+          onChange={(e) => set({ label: e.target.value })}
         />
         <label className="check">
           <input
