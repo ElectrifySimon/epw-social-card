@@ -1,97 +1,75 @@
-# Social cards
+# EPW session cards, guide
 
-A single static page that turns a few fields into a post ready image at exact platform pixels. No account, no server, no upload. Photos and QR codes stay in the browser.
+A one page tool for Energy Planning Week 2026. Pick the session you are attending, pick one of the four backgrounds, download the card.
 
-Live at https://electrifysimon.github.io/social-cards/
+Live: https://electrifysimon.github.io/epw-social-card/ with the passcode `epw`.
 
-## 🎴 The three cards
+## 🚪 The passcode
 
-| Mode | Use it for | Main field |
-|---|---|---|
-| Event | You speaking, a session, a panel | Headline, date, venue, portrait |
-| Number | One figure that carries the argument | Value, unit, takeaway |
-| Story chart | A trend with a shape | CSV, chart type, callouts |
+The gate is client side: `epw` is checked in the browser and remembered for the visit in session storage. It keeps the builder out of casual reach. It is not access control, because the files behind it are public and the code sits in the JavaScript bundle. If the cards must be closed to the public, the check has to move to a server.
 
-Format is 4:5 portrait (1080 by 1350) or 1:1 square (1080 by 1080).
+## 🎫 Choosing a session
 
-## ⌨️ Filling a card
+The list holds 21 sessions across the four days, pulled from the participant portal. Search by title, speaker, co-host or day. Breaks and logistics are filtered out, so every entry is something worth announcing.
 
-Every control sits in the rail on the left. Text fields write straight onto the card, and the card redraws as you type.
+The card shows the session number, the day and date, the day theme, the title, the time, the co-hosting partner and up to three speakers with a count for the rest.
 
-| Field | What it does |
+## 🖼️ Backgrounds
+
+Four artworks, named 1 to 4, exactly as supplied:
+
+| Background | What it carries |
 |---|---|
-| Mode | Switches the card layout |
-| Format | 4:5 or 1:1 |
-| Kicker | The small line above the headline |
-| Headline | The card's main statement, wraps to four lines |
-| Sub | One supporting sentence |
-| Date | Sits top right on an event card |
-| Who, Where | The byline block at the foot |
-| Value, Unit, Takeaway | Number card only |
-| CSV, Chart type, Callouts | Story chart only |
+| 1 | Event title top left, white partner banner in the lower third |
+| 2 | Event title top left, open ground below |
+| 3 | Event title top left, partner banner on the bottom edge |
+| 4 | Line artwork only |
 
-## 🎨 Look
+The session text sits in the clear band the organisers left between the title block and the partner banner. That band is 348 pixels tall on a 1080 card, which is why the title steps down from 48 to 34 pixels as it gets longer. A 121 character session title still fits three lines.
 
-Palettes set accent and ground together. Either one can then be overridden, so a palette is a starting point you can leave behind.
-
-Seventeen background effects plus Flat, all drawn on a canvas from the timeline value. That means the preview and the GIF frames are the same picture, and every effect animates in both.
-
-Nine typefaces, self hosted: Space Grotesk, Inter, Archivo, Oswald, Bebas Neue, DM Serif Display, Playfair Display, a system stack, and a mono stack.
-
-## 🧍 The portrait
-
-Upload a cut out PNG or WebP with a transparent background. Nothing leaves the browser and no ground is painted behind the subject: colour grading, the rim light and the shadow are all CSS, so the artwork runs underneath.
-
-Position left, right or none. Size runs from 38 to 92 percent of the card width, capped lower on the left so the headline keeps its column.
-
-Cropping of the built in portrait stops at the microphone line, with the last 90 pixels fading out. A photo swap keeps that treatment only if you cut it the same way; upload your own cut out for a different shot.
+Slow drift on the artwork is on by default. Turn it off for a still frame; the GIF then records a single pose.
 
 ## 🔳 The QR code
 
-Off by default. A slot appears under the date the moment you upload one.
-
-Upload a white QR on transparency and it passes through untouched. Upload a black QR on a white square and the file is converted on the way in: modules become white, the paper becomes transparent, so it sits on the artwork instead of punching a hole in it.
-
-White on dark is inverted against the QR spec. Phone cameras read it. Some handheld and flatbed scanners do not, so test with the reader that will be used before you print it.
+Always on, top right, pointing at the participant portal. It sits on a quiet zone painted in the artwork's own navy, so it scans without a white card pasted on the design. Drawn white on transparency, which every phone camera reads.
 
 ## 📤 Export
 
-| Output | Size | Notes |
-|---|---|---|
-| Download | 1080 by 1350 or 1080 by 1080 | About 1.5 MB, export takes a second |
-| Copy PNG | Same | Straight to the clipboard for pasting into a post |
-| Animated GIF | Same pixels | 32 frames at 50 ms, then a 2 second hold on the finished card |
+Download PNG writes 1080 by 1080, about 0.9 MB. Animated GIF writes 29 frames at 60 ms with a two second hold on the finished frame, about 3 MB, and takes six seconds to encode.
 
-Encoding a GIF takes about 16 seconds and lands around 4 MB. That 2 second hold at the end stops the loop snapping back to the empty frame, which is what makes a short loop tiring to look at.
+The GIF arrives as a Save button instead of a silent download, because a browser drops a download fired a minute after the click that started it. One extra click, and it always lands.
 
-## ♿ What the build guarantees
+Your name is optional. Fill it in and the card carries an Attending line; leave it empty for a clean card.
 
-Contrast is computed, not eyeballed. Card text colours are derived from the ground's luminance, so a light ground gets dark type and a dark ground gets light type. An accent used as text falls back to ink when it fails 3 to 1 against the ground.
+## 🔄 Refreshing the programme
 
-Its own accent keeps the rail readable whatever colour the card is using, so a selected button never disappears.
+The programme is scraped at build time, never fetched by the attendee's browser.
 
-Measurement runs on every text node against the pixels actually behind it: 9,101 checks across two UI themes, seven grounds, five accents and three card modes, with zero failures.
+```bash
+python3 scripts/scrape_programme.py          # rewrite src/data/programme.json
+python3 scripts/scrape_programme.py --check  # exit 1 when the live programme moved
+```
 
-## 🛠️ Build
+Each of the four day tables is read as time, bold title, optional co-host line, speaker list. A fingerprint of the titles, times, co-hosts and speakers is stored with the JSON, so a changed programme shows a different hash and cannot ship silently.
+
+## 🏗️ Build and deploy
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173/social-cards/
-npm run build    # dist/, ready for Pages
+npm run dev      # http://localhost:5173/epw-social-card/
+npm run build    # dist/
 ```
 
-Deploy is a push to `main`. A Pages workflow builds and publishes `dist`.
+Any push to `main` builds and publishes through the Pages workflow. The app lives under `/epw-social-card/`, which is set in `vite.config.ts`.
 
-## 🧾 Licences
+## ⚠️ Known limits
 
-MIT and Apache 2.0 only. Export uses snapdom (MIT), the GIF encoder is gifenc (MIT), charts are Apache ECharts (Apache 2.0), and fonts are self hosted under the SIL Open Font Licence. No AGPL, no GPL.
+The venue line is not on the card, because the portal publishes one venue for the week and no per-session rooms.
 
-## 🔧 When something looks wrong
+Background 3 puts the partner banner on the bottom edge of the artwork, so the banner has no breathing room below it. That comes from the artwork, not the card.
 
-| Symptom | Cause |
-|---|---|
-| Export comes out twice the size | Device pixel ratio is being applied twice; export divides by `devicePixelRatio` |
-| Typeface control changes nothing | A later CSS shorthand is winning over the font variable |
-| Selected button text vanishes | The rail accent is being read from the card instead of its own variable |
-| White square around the QR | The uploaded image was not normalised; check `src/lib/qr.ts` |
-| Pale type on a light ground | The ground luminance cut is at 0.42 in `src/lib/theme.ts` |
+White on dark QR codes are inverted against the spec. Phones read them. Old handheld scanners may not.
+
+## 🧾 Credits
+
+Artwork, event title and partner marks belong to the organisers and are used unchanged. Built from the social-cards tool: React 19, Vite, SnapDOM, gifenc, self hosted fonts.
