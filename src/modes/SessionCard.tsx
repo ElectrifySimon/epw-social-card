@@ -71,7 +71,7 @@ export function SessionCard({ c }: { c: Content }) {
     }
 
     // the week card has no co-host line, so it can carry a bigger title
-    const start = week ? Math.round(SCALE[c.bg][0] * 2.2) : Math.max(titleSize(c.bg, title), SCALE[c.bg][0])
+    const start = week ? Math.round(SCALE[c.bg][0] * 1.15) : Math.max(titleSize(c.bg, title), SCALE[c.bg][0])
     let size = start
     heading.style.fontSize = `${size}px`
     let guard = 0
@@ -79,6 +79,14 @@ export function SessionCard({ c }: { c: Content }) {
       size -= 1
       heading.style.fontSize = `${size}px`
       guard += 1
+    }
+
+    // the week card has no co-host line, so the block would float at the top.
+    // Push it down to sit just above the partner banner instead.
+    body.style.paddingTop = '0px'
+    if (week) {
+      const slack = limit - contentBottom() - 56
+      body.style.paddingTop = `${Math.max(0, Math.round(slack))}px`
     }
   }, [c.sessionId, c.bg, title, week])
 
@@ -101,7 +109,10 @@ export function SessionCard({ c }: { c: Content }) {
           {mark ? <i className="dot" /> : null}
           <span>{when}</span>
         </p>
-        <h1 className="title" style={{ fontSize: titleSize(c.bg, title) }}>
+        <h1
+          className={week ? 'title title--week' : 'title'}
+          style={{ fontSize: week ? undefined : titleSize(c.bg, title) }}
+        >
           {title}
         </h1>
         {host ? <p className="host">{host}</p> : null}

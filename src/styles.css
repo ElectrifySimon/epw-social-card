@@ -516,14 +516,20 @@ button:focus-visible {
   color: var(--yellow);
 }
 
+.card .title--week {
+  color: var(--yellow);
+  text-shadow: 0 0 26px rgba(0, 24, 38, 0.55), 0 2px 8px rgba(0, 14, 24, 0.5);
+}
+
 .card .host--name {
-  margin-top: 18px;
+  margin-top: 14px;
   font-family: 'Archivo', sans-serif;
-  font-size: 40px;
+  font-size: 58px;
   font-weight: 700;
   letter-spacing: -0.015em;
   text-transform: none;
   color: #fff;
+  text-shadow: 0 0 22px rgba(0, 18, 30, 0.9), 0 2px 8px rgba(0, 12, 22, 0.85);
 }
 
 .card .attend__name {

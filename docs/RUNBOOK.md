@@ -87,8 +87,9 @@ The picker also offers **All four days**, a synthetic entry built in `programme.
 Someone attending the week instead of one session picks All four days. The card then changes shape, because the artwork already prints the event name, the dates and the city:
 
 - Kicker: `WHOLE WEEK · 4 days · 21 sessions`, taken from the programme counts. It says something the poster cannot.
-- Headline: the badge line, `I'm attending` by default, set at up to 2.2 times the normal starting size and shrunk by the same fit loop.
-- Byline: the attendee name, 40 px, under the headline.
+- Headline: the badge line, `I'm attending` by default, in the amber accent at 1.15 times the normal starting size, then shrunk by the same fit loop if needed.
+- Byline: the attendee name, 58 px, under the headline.
+- The block is bottom-anchored: after fitting, it is pushed down to finish 56 px above the partner banner, so the space above the kicker takes the slack instead of leaving a hole above the logos.
 - No co-host line, and no corner badge, since the badge became the headline.
 
 If the name is left empty the card still works: it reads as a general attendee statement.
