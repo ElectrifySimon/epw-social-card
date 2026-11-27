@@ -64,7 +64,6 @@ export function SessionCard({ c }: { c: Content }) {
     <article
       className="card"
       data-bg={c.bg}
-      data-motion={c.motion ? 'on' : 'off'}
       data-named={name ? 'on' : 'off'}
     >
       <div className="bg" style={{ backgroundImage: `url(${BG[c.bg]})` }} aria-hidden />

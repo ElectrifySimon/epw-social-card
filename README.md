@@ -1,6 +1,6 @@
 # EPW 2026 session cards
 
-A card builder for Energy Planning Week 2026. Pick the session you are attending, pick one of the four backgrounds, download the PNG or the animated GIF.
+A card builder for Energy Planning Week 2026. Pick the session you are attending, pick one of the four backgrounds, download the PNG.
 
 Live: https://electrifysimon.github.io/epw-social-card/ with the passcode `epw`.
 
@@ -10,7 +10,7 @@ Live: https://electrifysimon.github.io/epw-social-card/ with the passcode `epw`.
 - Four backgrounds, named Background 1 to 4, each with the partner lockup already in the artwork.
 - A QR to the participant portal on every card, in the artwork's own navy so it scans without a white patch.
 - Optional name line, so the card reads as yours without a photo.
-- PNG at 1080 by 1080 and an animated GIF of 29 frames with a two second hold.
+- PNG at 1080 by 1080, about 1 MB.
 
 ## Run
 

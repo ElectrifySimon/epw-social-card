@@ -11,7 +11,6 @@ export type BgId = 1 | 2 | 3 | 4
 export type Content = {
   sessionId: string
   bg: BgId
-  motion: boolean
   name: string
   showDayTheme: boolean
 }

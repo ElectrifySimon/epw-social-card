@@ -5,13 +5,11 @@ type Props = {
   c: Content
   set: (patch: Partial<Content>) => void
   onPng: () => void
-  onGif: () => void
   busy: string
   toast: string
-  pending: { url: string; name: string; label: string } | null
 }
 
-export function Rail({ c, set, onPng, onGif, busy, toast, pending }: Props) {
+export function Rail({ c, set, onPng, busy, toast }: Props) {
   return (
     <aside className="rail">
       <header className="rail__head">
@@ -45,10 +43,6 @@ export function Rail({ c, set, onPng, onGif, busy, toast, pending }: Props) {
             </button>
           ))}
         </div>
-        <label className="check">
-          <input type="checkbox" checked={c.motion} onChange={(e) => set({ motion: e.target.checked })} />
-          <span>Slow drift on the artwork</span>
-        </label>
       </section>
 
       <section className="field">
@@ -76,14 +70,6 @@ export function Rail({ c, set, onPng, onGif, busy, toast, pending }: Props) {
         <button type="button" className="btn btn--primary" onClick={onPng} disabled={!!busy}>
           Download PNG
         </button>
-        <button type="button" className="btn" onClick={onGif} disabled={!!busy}>
-          Animated GIF
-        </button>
-        {pending ? (
-          <a className="btn btn--save" href={pending.url} download={pending.name}>
-            {pending.label}
-          </a>
-        ) : null}
         {busy ? <p className="hint">{busy}</p> : null}
         {toast ? <p className="toast">{toast}</p> : null}
       </section>

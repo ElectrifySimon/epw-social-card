@@ -6,18 +6,13 @@ import { SessionCard } from './modes/SessionCard'
 import { Rail } from './components/Rail'
 import { Gate, unlocked } from './components/Gate'
 import { cardBlob, downloadBlob } from './lib/export'
-import { recordGif } from './lib/gif'
 
-const GIF_FRAMES = 28
-const GIF_DELAY = 60
-const GIF_HOLD = 2000
 
 export default function App() {
   const [c, setC] = useState<Content>(() => loadContent())
   const [zoom, setZoom] = useState(0.62)
   const [busy, setBusy] = useState('')
   const [toast, setToast] = useState('')
-  const [pending, setPending] = useState<{ url: string; name: string; label: string } | null>(null)
   const [open, setOpen] = useState(() => unlocked())
   const cardRef = useRef<HTMLDivElement>(null)
   // a second card, never scaled, parked off screen: the export and the GIF
@@ -47,23 +42,6 @@ export default function App() {
     return () => window.removeEventListener('resize', fit)
   }, [])
 
-  // one timeline value drives the preview and the GIF frames
-  useEffect(() => {
-    let raf = 0
-    const start = performance.now()
-    const tick = (now: number) => {
-      const t = ((now - start) % 12000) / 12000
-      cardRef.current?.style.setProperty('--t', String(t))
-      raf = requestAnimationFrame(tick)
-    }
-    raf = requestAnimationFrame(tick)
-    ;(window as unknown as { __setTimeline?: (t: number) => void }).__setTimeline = (t: number) => {
-      cancelAnimationFrame(raf)
-      cardRef.current?.style.setProperty('--t', String(t))
-    }
-    return () => cancelAnimationFrame(raf)
-  }, [])
-
   const filename = useCallback((ext: string) => {
     const s = byId(c.sessionId)
     const slug = s.title
@@ -87,33 +65,6 @@ export default function App() {
     }
   }, [filename])
 
-  const onGif = useCallback(async () => {
-    if (!cardRef.current) return
-    setBusy('Recording frames 0%')
-    try {
-      const setT = (window as unknown as { __setTimeline?: (t: number) => void }).__setTimeline
-      const res = await recordGif(
-        exportRef.current!,
-        (t) => setT?.(t),
-        GIF_FRAMES,
-        GIF_DELAY,
-        '#002030',
-        (done, total) => setBusy(`Recording frames ${Math.round((done / total) * 100)}%`),
-        GIF_HOLD
-      )
-      // Chrome drops a download fired long after the click that started it
-      // (transient activation expires), so the encoded GIF becomes a real link
-      setPending({
-        url: URL.createObjectURL(res.blob),
-        name: filename('gif'),
-        label: `Save GIF (${(res.blob.size / 1e6).toFixed(1)} MB)`,
-      })
-      setToast(`GIF ${res.w}x${res.h} · ${res.frames} frames, ready to save`)
-    } finally {
-      setBusy('')
-    }
-  }, [filename])
-
   useEffect(() => {
     document.title = `${EVENT.title} · session card`
   }, [])
@@ -122,7 +73,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <Rail c={c} set={set} onPng={onPng} onGif={onGif} busy={busy} toast={toast} pending={pending} />
+      <Rail c={c} set={set} onPng={onPng} busy={busy} toast={toast} />
       <main className="stage" ref={stageRef}>
         <div className="stage__inner" style={{ width: DIMS.w * zoom, height: DIMS.h * zoom }}>
           <div className="stage__scale" style={{ transform: `scale(${zoom})` }}>

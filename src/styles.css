@@ -261,14 +261,6 @@ button:focus-visible {
   border-color: var(--ui);
 }
 
-.btn--save {
-  text-align: center;
-  text-decoration: none;
-  background: #0f3a49;
-  border-color: var(--yellow);
-  color: var(--yellow);
-}
-
 .btn:disabled {
   opacity: 0.55;
   cursor: progress;
@@ -375,12 +367,6 @@ button:focus-visible {
   inset: -4px;
   background-size: cover;
   background-position: center;
-  transform: translate3d(calc((var(--t, 0) - 0.5) * -20px), calc((var(--t, 0) - 0.5) * 14px), 0) scale(1.05);
-  will-change: transform;
-}
-
-.card[data-motion='off'] .bg {
-  transform: none;
 }
 
 /* QR: white modules on a vignette of the artwork's own ground, so the lines

@@ -27,7 +27,7 @@ Four artworks, named 1 to 4, exactly as supplied:
 
 The session text sits in the clear band the organisers left between the title block and the partner banner. That band is 348 pixels tall on a 1080 card, which is why the title steps down from 48 to 34 pixels as it gets longer. A 121 character session title still fits three lines.
 
-Slow drift on the artwork is on by default. Turn it off for a still frame; the GIF then records a single pose.
+The artwork is still. No drift, no animation.
 
 ## 🔳 The QR code
 
@@ -35,9 +35,9 @@ Always on, top right, pointing at the participant portal. It sits on a quiet zon
 
 ## 📤 Export
 
-Download PNG writes 1080 by 1080, about 0.9 MB. Animated GIF writes 29 frames at 60 ms with a two second hold on the finished frame, about 3 MB, and takes six seconds to encode.
+Download PNG writes 1080 by 1080 in about a second, roughly 1 MB.
 
-The GIF arrives as a Save button instead of a silent download, because a browser drops a download fired a minute after the click that started it. One extra click, and it always lands.
+The export is rendered from a second card that never carries the preview zoom, so the file is always 1080 square whatever the screen or the window size. Animation is off the table for now: the drifting artwork never looked settled enough.
 
 Your name is optional. Fill it in and the card carries an Attending line; leave it empty for a clean card.
 

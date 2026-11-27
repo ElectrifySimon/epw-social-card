@@ -7,7 +7,6 @@ export function starterContent(): Content {
   return {
     sessionId: (sessions.find((s) => s.number === 1) ?? sessions[0])?.id ?? '',
     bg: 1,
-    motion: true,
     name: '',
     showDayTheme: true,
   }
