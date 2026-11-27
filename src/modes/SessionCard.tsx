@@ -89,23 +89,37 @@ export function SessionCard({ c }: { c: Content }) {
         guard += 1
       }
 
-      // the week card has no co-host line, so the block would float at the top.
-      // Push it down to sit just above the partner banner instead.
-      if (week) {
-        const slack = limit - contentBottom() - 56
-        body.style.paddingTop = `${Math.max(0, Math.round(slack))}px`
+      if (week) settle()
+    }
+
+    /**
+     * Close the loop instead of trusting one measurement: push the block until
+     * it ends 56 px above the banner. Repeated because web fonts change the
+     * metrics after the first layout.
+     */
+    function settle() {
+      for (let i = 0; i < 5; i++) {
+        const diff = limit - 56 - contentBottom()
+        if (Math.abs(diff) < 2) return
+        const pad = parseFloat(body!.style.paddingTop) || 0
+        body!.style.paddingTop = `${Math.max(0, Math.round(pad + diff))}px`
       }
     }
 
     fit()
-    // web fonts land after the first layout, and they change the metrics this
-    // block is fitted against, so fit again once they are in
     let alive = true
     document.fonts?.ready.then(() => {
       if (alive) fit()
     })
+    // a font swap or a late reflow can still move the block after the fact
+    const ro = new ResizeObserver(() => {
+      if (!alive || !week) return
+      if (Math.abs(limit - 56 - contentBottom()) >= 2) settle()
+    })
+    ro.observe(body)
     return () => {
       alive = false
+      ro.disconnect()
     }
   }, [c.sessionId, c.bg, title, week])
 
