@@ -20,6 +20,9 @@ export default function App() {
   const [pending, setPending] = useState<{ url: string; name: string; label: string } | null>(null)
   const [open, setOpen] = useState(() => unlocked())
   const cardRef = useRef<HTMLDivElement>(null)
+  // a second card, never scaled, parked off screen: the export and the GIF
+  // always read 1080 by 1080 whatever the preview zoom is doing
+  const exportRef = useRef<HTMLDivElement>(null)
   const stageRef = useRef<HTMLDivElement>(null)
 
   const set = useCallback((patch: Partial<Content>) => {
@@ -72,52 +75,32 @@ export default function App() {
     return `epw2026-${slug}.${ext}`
   }, [c.sessionId])
 
-  /** Capture at the card's real size: undo the preview zoom, then restore it. */
-  const withNaturalSize = useCallback(async <T,>(fn: () => Promise<T>): Promise<T> => {
-    const card = cardRef.current
-    const wrap = card?.parentElement as HTMLElement | null
-    const holder = wrap?.parentElement as HTMLElement | null
-    if (!wrap || !holder) return fn()
-    const prev = { transform: wrap.style.transform, w: holder.style.width, h: holder.style.height }
-    wrap.style.transform = 'none'
-    holder.style.width = `${DIMS.w}px`
-    holder.style.height = `${DIMS.h}px`
-    await new Promise((r) => requestAnimationFrame(() => setTimeout(r, 80)))
-    try {
-      return await fn()
-    } finally {
-      wrap.style.transform = prev.transform
-      holder.style.width = prev.w
-      holder.style.height = prev.h
-    }
-  }, [])
-
   const onPng = useCallback(async () => {
     if (!cardRef.current) return
     setBusy('Rendering')
     try {
-      const blob = await withNaturalSize(() => cardBlob(cardRef.current!, '#002030'))
+      const blob = await cardBlob(exportRef.current!, '#002030')
       downloadBlob(blob, filename('png'))
       setToast(`PNG ${DIMS.w}x${DIMS.h} · ${(blob.size / 1e6).toFixed(1)} MB`)
     } finally {
       setBusy('')
     }
-  }, [filename, withNaturalSize])
+  }, [filename])
 
   const onGif = useCallback(async () => {
     if (!cardRef.current) return
     setBusy('Recording frames 0%')
     try {
       const setT = (window as unknown as { __setTimeline?: (t: number) => void }).__setTimeline
-      const res = await withNaturalSize(() => recordGif(
-        cardRef.current!,
+      const res = await recordGif(
+        exportRef.current!,
         (t) => setT?.(t),
         GIF_FRAMES,
         GIF_DELAY,
         '#002030',
         (done, total) => setBusy(`Recording frames ${Math.round((done / total) * 100)}%`),
         GIF_HOLD
-      ))
+      )
       // Chrome drops a download fired long after the click that started it
       // (transient activation expires), so the encoded GIF becomes a real link
       setPending({
@@ -129,7 +112,7 @@ export default function App() {
     } finally {
       setBusy('')
     }
-  }, [filename, withNaturalSize])
+  }, [filename])
 
   useEffect(() => {
     document.title = `${EVENT.title} · session card`
@@ -149,6 +132,10 @@ export default function App() {
           </div>
         </div>
       </main>
+
+      <div className="export-node" ref={exportRef} aria-hidden>
+        <SessionCard c={c} />
+      </div>
     </div>
   )
 }

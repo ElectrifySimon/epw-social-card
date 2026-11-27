@@ -616,3 +616,13 @@ button:focus-visible {
   line-height: 1.5;
   color: var(--ink-2);
 }
+
+/* off screen, unscaled capture surface */
+.export-node {
+  position: fixed;
+  left: -4000px;
+  top: 0;
+  width: 1080px;
+  height: 1080px;
+  pointer-events: none;
+}
