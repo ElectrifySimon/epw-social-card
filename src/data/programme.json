@@ -1,0 +1,545 @@
+{
+  "event": {
+    "title": "Energy Planning Week 2026",
+    "dates": "1-4 December 2026",
+    "venue": "GIZ Campus Forum, Bonn",
+    "url": "https://energyplanningweek.info/"
+  },
+  "days": [
+    {
+      "day": 1,
+      "heading": "Day 1, Tuesday 1 December: Governing Scenario Work for Delivery",
+      "theme": "Governing Scenario Work for Delivery",
+      "items": [
+        {
+          "day": 1,
+          "time": "08:00-09:00",
+          "title": "Registration, badge collection and coffee",
+          "cohost": "",
+          "speakers": [],
+          "kind": "break",
+          "number": null,
+          "id": "registration-badge-collection-and-coffee"
+        },
+        {
+          "day": 1,
+          "time": "09:00-09:45",
+          "title": "Welcome remarks and introductory presentations",
+          "cohost": "",
+          "speakers": [
+            "Stefanie Bradtner",
+            "Norela Constantinescu",
+            "Vanessa Schmidt",
+            "Dr. Tania Vorwerk",
+            "Hanne Jersild",
+            "Jean-François Gagné",
+            "Stefan Mager"
+          ],
+          "kind": "session",
+          "number": null,
+          "id": "welcome-remarks-and-introductory-presentations"
+        },
+        {
+          "day": 1,
+          "time": "09:45-10:25",
+          "title": "Keynote presentation",
+          "cohost": "",
+          "speakers": [
+            "Prof. Maarten Hajer"
+          ],
+          "kind": "session",
+          "number": null,
+          "id": "keynote-presentation"
+        },
+        {
+          "day": 1,
+          "time": "10:25-12:00",
+          "title": "Session 1: Electrification and the outcomes of COP31 – what scenarios must now capture",
+          "cohost": "UNFCCC",
+          "speakers": [
+            "Simon Benmarraze (moderator)",
+            "Dr. Larissa Nogueira",
+            "Dr. Stelios Pesmajoglou",
+            "Luciano Caratori",
+            "Dr. Ir. Dadan Kusdiana",
+            "Girvan Pigott",
+            "Prof. Dr. Sven Teske"
+          ],
+          "kind": "session",
+          "number": 1,
+          "id": "session-1-electrification-and-the-outcomes-of-cop31-what-sce"
+        },
+        {
+          "day": 1,
+          "time": "12:00-12:30",
+          "title": "Coffee break",
+          "cohost": "",
+          "speakers": [],
+          "kind": "break",
+          "number": null,
+          "id": "coffee-break"
+        },
+        {
+          "day": 1,
+          "time": "12:30-14:15",
+          "title": "Session 2: Building planning ecosystems that survive political cycles",
+          "cohost": "Energy Modelling Hub and Natural Resources Canada",
+          "speakers": [
+            "Brad Little (moderator)",
+            "Edouard Clement",
+            "Dr. Matías Paredes",
+            "Alessia De Vita",
+            "Kamil Maqsood",
+            "Dr. Florian Knobloch",
+            "Prof. Leboli Zak Thamae"
+          ],
+          "kind": "session",
+          "number": 2,
+          "id": "session-2-building-planning-ecosystems-that-survive-politica"
+        },
+        {
+          "day": 1,
+          "time": "14:15-15:45",
+          "title": "Lunch break",
+          "cohost": "",
+          "speakers": [],
+          "kind": "break",
+          "number": null,
+          "id": "lunch-break"
+        },
+        {
+          "day": 1,
+          "time": "15:45-17:30",
+          "title": "Session 3: Data governance, sharing and quality assurance for developing long-term scenarios",
+          "cohost": "European Commission DG ENER",
+          "speakers": [
+            "Dr. Derck Koolen (moderator)",
+            "Ivo Nacucchio",
+            "Marie Rousselot",
+            "Yudiandra Yuwono",
+            "Dr. Joel Yongoua Nana",
+            "Hanaa Chabini"
+          ],
+          "kind": "session",
+          "number": 3,
+          "id": "session-3-data-governance-sharing-and-quality-assurance-for-"
+        },
+        {
+          "day": 1,
+          "time": "17:30-17:45",
+          "title": "Closing and logistics",
+          "cohost": "",
+          "speakers": [],
+          "kind": "break",
+          "number": null,
+          "id": "closing-and-logistics"
+        },
+        {
+          "day": 1,
+          "time": "19:00-21:00",
+          "title": "Welcome dinner",
+          "cohost": "",
+          "speakers": [
+            "Eventmanufaktur",
+            "Maximilianstraße 15",
+            "53111 Bonn"
+          ],
+          "kind": "admin",
+          "number": null,
+          "id": "welcome-dinner"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "heading": "Day 2, Wednesday 2 December: Scenarios for Security, Flexibility and Implementation",
+      "theme": "Scenarios for Security, Flexibility and Implementation",
+      "items": [
+        {
+          "day": 2,
+          "time": "08:00-09:15",
+          "title": "Coffee and networking",
+          "cohost": "",
+          "speakers": [],
+          "kind": "break",
+          "number": null,
+          "id": "coffee-and-networking"
+        },
+        {
+          "day": 2,
+          "time": "09:15-10:00",
+          "title": "Impact session: Brazil's national energy plan and the LTES Network",
+          "cohost": "",
+          "speakers": [
+            "Lidiane de Almeida Modesto",
+            "Filipe de Pádua"
+          ],
+          "kind": "session",
+          "number": null,
+          "id": "impact-session-brazil-s-national-energy-plan-and-the-ltes-ne"
+        },
+        {
+          "day": 2,
+          "time": "10:00-10:30",
+          "title": "Coffee break",
+          "cohost": "",
+          "speakers": [],
+          "kind": "break",
+          "number": null,
+          "id": "coffee-break"
+        },
+        {
+          "day": 2,
+          "time": "10:30-12:15",
+          "title": "Session 4: Planning under geopolitical uncertainty",
+          "cohost": "World Energy Council",
+          "speakers": [
+            "Norela Constantinescu (moderator)",
+            "Reshma Francy",
+            "Mungai Kihara",
+            "Juan Lucero",
+            "Daniel Pérez Nombela"
+          ],
+          "kind": "session",
+          "number": 4,
+          "id": "session-4-planning-under-geopolitical-uncertainty"
+        },
+        {
+          "day": 2,
+          "time": "12:15-13:30",
+          "title": "Lunch session: state-of-the-art showcase of machine learning and artificial intelligence in energy planning",
+          "cohost": "",
+          "speakers": [
+            "Nadeem Goussous (moderator)",
+            "Matt Gray",
+            "Dr. Charlie Heaps",
+            "Prof. Mark Howells",
+            "Yunshu Li",
+            "Dr. Alessandro Chiodi",
+            "Nabin Raj Gaihre",
+            "Dietram Oppelt"
+          ],
+          "kind": "session",
+          "number": null,
+          "id": "lunch-session-state-of-the-art-showcase-of-machine-learning-"
+        },
+        {
+          "day": 2,
+          "time": "13:30-15:15",
+          "title": "Session 5: Climate risks and adaptation in national energy scenarios",
+          "cohost": "",
+          "speakers": [
+            "Alessia De Vita (moderator)",
+            "Ines Jacob",
+            "Dr. Charlie Heaps",
+            "Dr. Seoungho Lee",
+            "Brad Little",
+            "Laura Cristina Marín Ortiz",
+            "Dr. Maxime Gersch-Souvignet",
+            "Malaika Charles"
+          ],
+          "kind": "session",
+          "number": 5,
+          "id": "session-5-climate-risks-and-adaptation-in-national-energy-sc"
+        },
+        {
+          "day": 2,
+          "time": "15:15-15:45",
+          "title": "Coffee break",
+          "cohost": "",
+          "speakers": [],
+          "kind": "break",
+          "number": null,
+          "id": "coffee-break"
+        },
+        {
+          "day": 2,
+          "time": "15:45-17:30",
+          "title": "Session 6: Transformative methods, transformative scenarios?",
+          "cohost": "",
+          "speakers": [
+            "Dr. Vivien Foster (moderator)",
+            "Jochen Bard",
+            "Dr. Ema Gusheva",
+            "Dr. Matías Paredes",
+            "Dr. Mohammad Amin Tahavori"
+          ],
+          "kind": "session",
+          "number": 6,
+          "id": "session-6-transformative-methods-transformative-scenarios"
+        },
+        {
+          "day": 2,
+          "time": "17:30-17:45",
+          "title": "Day 2 wrap and bridge to Day 3",
+          "cohost": "",
+          "speakers": [],
+          "kind": "other",
+          "number": null,
+          "id": "day-2-wrap-and-bridge-to-day-3"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "heading": "Day 3, Thursday 3 December: From Planning to Investment and Implementation",
+      "theme": "From Planning to Investment and Implementation",
+      "items": [
+        {
+          "day": 3,
+          "time": "08:00-09:00",
+          "title": "Closed-door session: LTES Network members and partners strategic meeting",
+          "cohost": "",
+          "speakers": [
+            "Coffee and networking for all other participants",
+            "08:00–09:00."
+          ],
+          "kind": "session",
+          "number": null,
+          "id": "closed-door-session-ltes-network-members-and-partners-strate"
+        },
+        {
+          "day": 3,
+          "time": "09:05-09:25",
+          "title": "Opening presentations",
+          "cohost": "",
+          "speakers": [
+            "Juan José García Méndez",
+            "Daniel Werner"
+          ],
+          "kind": "session",
+          "number": null,
+          "id": "opening-presentations"
+        },
+        {
+          "day": 3,
+          "time": "09:30-11:00",
+          "title": "Session 7: From energy planning to investment decisions – the case of power utilities",
+          "cohost": "World Bank",
+          "speakers": [
+            "Dr. Asami Miketa (moderator)",
+            "José Campos",
+            "Dr. Vivien Foster",
+            "Mauricio Bernhardt Maciel"
+          ],
+          "kind": "session",
+          "number": 7,
+          "id": "session-7-from-energy-planning-to-investment-decisions-the-c"
+        },
+        {
+          "day": 3,
+          "time": "11:00-11:30",
+          "title": "Coffee break",
+          "cohost": "",
+          "speakers": [],
+          "kind": "break",
+          "number": null,
+          "id": "coffee-break"
+        },
+        {
+          "day": 3,
+          "time": "11:30-13:00",
+          "title": "Session 8: Planning the transition away from fossil fuels",
+          "cohost": "Ministry for the Ecological Transition and the Demographic Challenge, Spain",
+          "speakers": [
+            "Simon Benmarraze (moderator)",
+            "Luana Alves de Melo",
+            "Alfonso Blanco",
+            "Luis Martínez-Montoya",
+            "Marta Muñoz"
+          ],
+          "kind": "session",
+          "number": 8,
+          "id": "session-8-planning-the-transition-away-from-fossil-fuels"
+        },
+        {
+          "day": 3,
+          "time": "13:00-14:30",
+          "title": "Lunch break and working lunch session: Planning for universal access – turning national targets into a bankable last mile",
+          "cohost": "",
+          "speakers": [],
+          "kind": "session",
+          "number": null,
+          "id": "lunch-break-and-working-lunch-session-planning-for-universal"
+        },
+        {
+          "day": 3,
+          "time": "14:30-15:45",
+          "title": "Session 9: From plans to delivery – how can planning support enabling energy markets?",
+          "cohost": "",
+          "speakers": [
+            "Toby Couture",
+            "Isabel Abreu",
+            "Sehlule Ndlovu",
+            "Dr. Sebastian Sterl",
+            "Dr. Benjamin Pflüger"
+          ],
+          "kind": "session",
+          "number": 9,
+          "id": "session-9-from-plans-to-delivery-how-can-planning-support-en"
+        },
+        {
+          "day": 3,
+          "time": "15:45-16:15",
+          "title": "Coffee break",
+          "cohost": "",
+          "speakers": [],
+          "kind": "break",
+          "number": null,
+          "id": "coffee-break"
+        },
+        {
+          "day": 3,
+          "time": "16:15-17:45",
+          "title": "Session 10: Country cases – when planning meets the market",
+          "cohost": "",
+          "speakers": [
+            "Daniel Russo (moderator)",
+            "Ubaid Ullah Khan",
+            "Lorena Melo Silva Perim",
+            "Dr. Bothwell Batidzirai",
+            "Saina Shirodkar",
+            "Dr. Maximilian Parzen"
+          ],
+          "kind": "session",
+          "number": 10,
+          "id": "session-10-country-cases-when-planning-meets-the-market"
+        },
+        {
+          "day": 3,
+          "time": "17:45-18:00",
+          "title": "Closing of Day 3",
+          "cohost": "",
+          "speakers": [
+            "Christopher Gross"
+          ],
+          "kind": "admin",
+          "number": null,
+          "id": "closing-of-day-3"
+        },
+        {
+          "day": 3,
+          "time": "18:00-20:00",
+          "title": "Reception",
+          "cohost": "",
+          "speakers": [
+            "Foyer",
+            "GIZ Campus"
+          ],
+          "kind": "admin",
+          "number": null,
+          "id": "reception"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "heading": "Day 4, Friday 4 December: Energy Planning Deep Dives",
+      "theme": "Energy Planning Deep Dives",
+      "items": [
+        {
+          "day": 4,
+          "time": "08:15-09:00",
+          "title": "Coffee session: Connecting long-term energy scenarios with marine spatial planning",
+          "cohost": "",
+          "speakers": [
+            "Anke Schoenlau (moderator)",
+            "Dr. Laura Gușatu",
+            "Rory O'Leary"
+          ],
+          "kind": "session",
+          "number": null,
+          "id": "coffee-session-connecting-long-term-energy-scenarios-with-ma"
+        },
+        {
+          "day": 4,
+          "time": "09:00-10:00",
+          "title": "Deep Dive 1: Greening data centres – principles for sound energy planning under uncertainty",
+          "cohost": "",
+          "speakers": [
+            "Dr. James Walker (moderator)",
+            "Mohammad Rizki Kresnawan",
+            "Dr. Atsede Gualu Endegnanew",
+            "Mohd Najib Mohd Shah",
+            "Rohit Sen",
+            "Nicola Magnani"
+          ],
+          "kind": "session",
+          "number": 1,
+          "id": "deep-dive-1-greening-data-centres-principles-for-sound-energ"
+        },
+        {
+          "day": 4,
+          "time": "10:00-11:00",
+          "title": "Deep Dive 2: Robust power system planning – linking grid infrastructure and flexibility",
+          "cohost": "Green Grids Initiative",
+          "speakers": [
+            "Francisco Gafaro (moderator)",
+            "Dr. Matías Paredes",
+            "Helena Lindquist",
+            "Jimmy Cesar Gonzales Arispe",
+            "Prof. Jairo Quirós-Tortós"
+          ],
+          "kind": "session",
+          "number": 2,
+          "id": "deep-dive-2-robust-power-system-planning-linking-grid-infras"
+        },
+        {
+          "day": 4,
+          "time": "11:00-11:30",
+          "title": "Coffee break",
+          "cohost": "",
+          "speakers": [],
+          "kind": "break",
+          "number": null,
+          "id": "coffee-break"
+        },
+        {
+          "day": 4,
+          "time": "11:30-13:00",
+          "title": "Deep Dive 3: Regional energy planning – aligning national priorities and regional interconnection",
+          "cohost": "African Union Commission",
+          "speakers": [
+            "Thomas Schmitz (moderator)",
+            "Shehu Ibrahim Khaleel",
+            "Dr. Sebastian Sterl",
+            "Alfonso Blanco",
+            "Yudiandra Yuwono",
+            "Sydney Zimba",
+            "Abdurashid Mirzaev"
+          ],
+          "kind": "session",
+          "number": 3,
+          "id": "deep-dive-3-regional-energy-planning-aligning-national-prior"
+        },
+        {
+          "day": 4,
+          "time": "13:00-13:15",
+          "title": "Closing remarks",
+          "cohost": "",
+          "speakers": [
+            "Dr. Ricardo Gorini"
+          ],
+          "kind": "admin",
+          "number": null,
+          "id": "closing-remarks"
+        },
+        {
+          "day": 4,
+          "time": "13:15-14:00",
+          "title": "Lunch",
+          "cohost": "",
+          "speakers": [],
+          "kind": "admin",
+          "number": null,
+          "id": "lunch"
+        }
+      ]
+    }
+  ],
+  "fingerprint": "31755e82a3a3",
+  "counts": {
+    "sessions": 21,
+    "rows": 37
+  }
+}
