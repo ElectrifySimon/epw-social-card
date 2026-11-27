@@ -1,5 +1,5 @@
 import { Content, EVENT } from '../lib/types'
-import { byId, cohostLine, dayFor, dayLabel, speakerLine } from '../lib/programme'
+import { byId, cohostLine, dayFor, dayLabel } from '../lib/programme'
 import bg1 from '../assets/bg/bg-1.jpg'
 import bg2 from '../assets/bg/bg-2.jpg'
 import bg3 from '../assets/bg/bg-3.jpg'
@@ -8,12 +8,23 @@ import qrSrc from '../assets/qr-epw.png'
 
 const BG: Record<number, string> = { 1: bg1, 2: bg2, 3: bg3, 4: bg4 }
 
-/** Title size steps down with length so a long session still fits three lines. */
-function titleSize(title: string): number {
-  if (title.length > 110) return 34
-  if (title.length > 84) return 38
-  if (title.length > 60) return 42
-  return 48
+/**
+ * Each artwork leaves a different amount of room, so the title scale is set per
+ * background. Four steps: short title first, longest last.
+ */
+const SCALE: Record<number, [number, number, number, number]> = {
+  1: [46, 42, 38, 33],
+  2: [64, 58, 52, 45],
+  3: [46, 42, 38, 33],
+  4: [72, 64, 57, 49],
+}
+
+function titleSize(bg: number, title: string): number {
+  const s = SCALE[bg] ?? SCALE[1]
+  if (title.length > 110) return s[3]
+  if (title.length > 84) return s[2]
+  if (title.length > 60) return s[1]
+  return s[0]
 }
 
 function badge(item: { number: number | null; title: string }): string {
@@ -27,11 +38,17 @@ export function SessionCard({ c }: { c: Content }) {
   const title = s.title.replace(/^(Session|Deep Dive)\s+\d+:\s*/i, '')
   const mark = badge(s)
   const host = cohostLine(s)
-  const people = speakerLine(s)
+  const name = c.name.trim()
 
   return (
-    <article className="card" data-bg={c.bg} data-motion={c.motion ? 'on' : 'off'}>
+    <article
+      className="card"
+      data-bg={c.bg}
+      data-motion={c.motion ? 'on' : 'off'}
+      data-named={name ? 'on' : 'off'}
+    >
       <div className="bg" style={{ backgroundImage: `url(${BG[c.bg]})` }} aria-hidden />
+
       <div className="qr">
         <img src={qrSrc} alt="" />
         <span>{EVENT.qrLabel}</span>
@@ -44,16 +61,19 @@ export function SessionCard({ c }: { c: Content }) {
           <span>{dayLabel(s)}</span>
         </p>
         {c.showDayTheme && day.theme ? <p className="theme">{day.theme}</p> : null}
-        <h1 className="title" style={{ fontSize: titleSize(title) }}>
+        <h1 className="title" style={{ fontSize: titleSize(c.bg, title) }}>
           {title}
         </h1>
-        <div className="meta">
-          <p className="time">{s.time}</p>
-          {host ? <p className="host">{host}</p> : null}
-          {people ? <p className="people">{people}</p> : null}
-        </div>
-        {c.name.trim() ? <p className="attendee">Attending · {c.name.trim()}</p> : null}
+        <p className="time">{s.time}</p>
+        {host ? <p className="host">{host}</p> : null}
       </div>
+
+      {name ? (
+        <div className="attend">
+          <p className="attend__label">I'm attending</p>
+          <p className="attend__name">{name}</p>
+        </div>
+      ) : null}
     </article>
   )
 }
