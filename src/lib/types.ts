@@ -14,7 +14,6 @@ export type Content = {
   name: string
   /** Badge line above the name. Editable, defaults to "I'm attending". */
   label: string
-  showDayTheme: boolean
 }
 
 export const BGS: { id: BgId; label: string; note: string }[] = [

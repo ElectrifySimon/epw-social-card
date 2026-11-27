@@ -9,7 +9,6 @@ export function starterContent(): Content {
     bg: 1,
     name: '',
     label: DEFAULT_LABEL,
-    showDayTheme: true,
   }
 }
 

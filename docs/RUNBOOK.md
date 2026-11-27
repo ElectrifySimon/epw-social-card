@@ -113,18 +113,23 @@ The card is 1080 square. Text is positioned by variables set per background, bec
 
 | Background | `--t` top | `--w` width | `--bmax` bottom limit | `--boxb` badge bottom | `--rhythm` |
 |---|---|---|---|---|---|
-| 1 | 450 | 588 | 750 | 742 | 14 |
+| 1 | 450 | 566 | 750 | 742 | 14 |
 | 2 | 468 | 762 | 820 | 1004 | 20 |
-| 3 | 450 | 588 | 898 | 910 | 16 |
+| 3 | 450 | 566 | 898 | 910 | 16 |
 | 4 | 296 | 842 | 828 | 980 | 24 |
 
 Left edge is 63 px on backgrounds 1, 3 and 4, and 49 px on background 2. That lines the block up with the "GIZ Campus" line printed on the artwork.
+
+The top line carries the session number, the day and date, and the session time, in that order, on one line. It is deliberately wider than the title column so the time never wraps away from the date. The day theme tagline and the separate time line were removed on 27 November 2026.
 
 Fixed elements:
 
 - QR: top 36, right 51, width 180, so its box is 838 to 1018 by 36 to 216.
 - Badge: right 62, width 340, 2 px border, 16 px radius. Its right edge sits 2 px inside the QR edge, which reads as aligned.
 - Body block: `max-height` is `--bmax` minus `--t`. The title has to fit inside that.
+- Wash: `inset: -56px -84px -34px -72px`, radial gradient, fading to nothing at the edge.
+
+A soft radial wash sits behind the block, drawn from the artwork navy, so the artwork accent lines do not cut through the words. It is a gradient, not a panel, and it hangs about 50 px past the text on each side.
 
 Title sizing runs twice. `titleSize()` picks a starting size from the title length and the background. Then a `useLayoutEffect` measures the block and steps the size down one pixel at a time until the block fits its limit, floor 26 px, 24 steps maximum. That measurement is what keeps a three-line co-host clear of the partner banner.
 

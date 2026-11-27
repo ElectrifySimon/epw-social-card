@@ -67,14 +67,6 @@ export function Rail({ c, set, onPng, busy, toast }: Props) {
           maxLength={28}
           onChange={(e) => set({ label: e.target.value })}
         />
-        <label className="check">
-          <input
-            type="checkbox"
-            checked={c.showDayTheme}
-            onChange={(e) => set({ showDayTheme: e.target.checked })}
-          />
-          <span>Show the day theme</span>
-        </label>
       </section>
 
       <section className="field field--actions">

@@ -329,7 +329,7 @@ button:focus-visible {
   isolation: isolate;
   --l: 63px;
   --t: 450px;
-  --w: 588px;
+  --w: 566px;
   --bmax: 750px;
   --boxb: 742px;
   --rhythm: 14px;
@@ -347,7 +347,7 @@ button:focus-visible {
 .card[data-bg='3'] {
   --l: 63px;
   --t: 450px;
-  --w: 588px;
+  --w: 566px;
   --bmax: 898px;
   --boxb: 910px;
   --rhythm: 16px;
@@ -414,6 +414,15 @@ button:focus-visible {
   opacity: 0.9;
 }
 
+.card .body::before {
+  content: '';
+  position: absolute;
+  inset: -56px -84px -34px -72px;
+  background: radial-gradient(closest-side, rgba(0, 26, 40, 0.66), rgba(0, 26, 40, 0.4) 58%, rgba(0, 26, 40, 0) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
 .card .body {
   position: absolute;
   left: var(--l);
@@ -421,6 +430,16 @@ button:focus-visible {
   width: var(--w);
   max-height: calc(var(--bmax) - var(--t));
   z-index: 2;
+}
+
+.card .kicker {
+  width: max-content;
+  max-width: calc(1080px - var(--l) - 90px);
+}
+
+.card .kicker .sep {
+  padding: 0 2px;
+  opacity: 0.6;
 }
 
 .card .kicker {
@@ -449,14 +468,6 @@ button:focus-visible {
   opacity: 0.6;
 }
 
-.card .theme {
-  margin: 0 0 var(--rhythm);
-  font-size: 17px;
-  line-height: 1.3;
-  color: var(--ink-2);
-  text-shadow: 0 0 14px rgba(0, 22, 36, 0.95), 0 1px 4px rgba(0, 18, 30, 0.9);
-}
-
 .card .title {
   margin: 0;
   font-family: 'Archivo', sans-serif;
@@ -465,15 +476,6 @@ button:focus-visible {
   letter-spacing: -0.022em;
   color: #fff;
   text-shadow: 0 0 20px rgba(0, 20, 34, 0.75), 0 2px 6px rgba(0, 16, 28, 0.6);
-}
-
-.card .time {
-  margin: var(--rhythm) 0 0;
-  font-size: 27px;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  color: var(--yellow);
-  letter-spacing: 0.01em;
 }
 
 .card[data-bg='2'] .time,
