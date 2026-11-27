@@ -21,6 +21,24 @@ export function SessionPicker({ value, onPick }: Props) {
         aria-label="Search the programme"
       />
       <div className="picker__list" role="listbox" aria-label="Programme">
+        {list.some((i) => i.kind === 'week') ? (
+          <div className="picker__day">
+            <p className="picker__dayhead">All four days</p>
+            {list.filter((i) => i.kind === 'week').map((i) => (
+              <button
+                key={i.id}
+                type="button"
+                role="option"
+                aria-selected={i.id === value}
+                className={`picker__item${i.id === value ? ' is-on' : ''}`}
+                onClick={() => onPick(i.id)}
+              >
+                <span className="picker__time">{i.time}</span>
+                <span className="picker__title">{clean(i)}</span>
+              </button>
+            ))}
+          </div>
+        ) : null}
         {programme.days.map((day) => {
           const items = list.filter((i) => i.day === day.day)
           if (!items.length) return null
@@ -48,7 +66,7 @@ export function SessionPicker({ value, onPick }: Props) {
         {!list.length ? <p className="picker__empty">Nothing matches that.</p> : null}
       </div>
       <p className="picker__count">
-        {list.length} of {programme.counts?.sessions ?? '?'} sessions
+        {list.filter((i) => i.kind !== 'week').length} of {programme.counts?.sessions ?? '?'} sessions
       </p>
     </div>
   )

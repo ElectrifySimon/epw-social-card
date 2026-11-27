@@ -80,6 +80,19 @@ The script parses the day tables on energyplanningweek.info, splits each cell in
 
 `sessions` in `programme.ts` keeps only rows whose kind is `session`, which is what the picker lists.
 
+The picker also offers **All four days**, a synthetic entry built in `programme.ts` as `weekItem` (id `whole-week`, kind `week`). It is not scraped, so a programme refresh never removes it. Search matches it on `whole week`, `all week`, `attending` or the event title.
+
+### The whole-week card
+
+Someone attending the week rather than one session picks All four days. The card then changes shape, because the artwork already prints the event name, the dates and the city:
+
+- Kicker: `WHOLE WEEK · 4 days · 21 sessions`, taken from the programme counts. It says something the poster cannot.
+- Headline: the badge line, `I'm attending` by default, set at up to 2.2 times the normal starting size and shrunk by the same fit loop.
+- Byline: the attendee name, 40 px, under the headline.
+- No co-host line, and no corner badge, since the badge became the headline.
+
+If the name is left empty the card still works: it reads as a general attendee statement.
+
 ### Backgrounds
 
 Four official artworks live in `src/assets/bg/`. Each one keeps a different amount of clear space, which drives the layout variables in section 7. If new artwork arrives, re-export it at 1080 square, drop it in as `bg-5.jpg`, add it to `BG` and `SCALE` in `SessionCard.tsx`, add a `BGS` row in `types.ts`, and add a `.card[data-bg='5']` block in `styles.css`.

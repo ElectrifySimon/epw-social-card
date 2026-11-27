@@ -516,6 +516,16 @@ button:focus-visible {
   color: var(--yellow);
 }
 
+.card .host--name {
+  margin-top: 18px;
+  font-family: 'Archivo', sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-transform: none;
+  color: #fff;
+}
+
 .card .attend__name {
   margin: 0;
   font-family: 'Archivo', sans-serif;

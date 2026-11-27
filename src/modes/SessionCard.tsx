@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from 'react'
 import { Content, DEFAULT_LABEL, EVENT } from '../lib/types'
-import { byId, cohostLine, dayLabel } from '../lib/programme'
+import { byId, cohostLine, dayLabel, isWeek, programme } from '../lib/programme'
 import bg1 from '../assets/bg/bg-1.jpg'
 import bg2 from '../assets/bg/bg-2.jpg'
 import bg3 from '../assets/bg/bg-3.jpg'
@@ -35,11 +35,19 @@ function badge(item: { number: number | null; title: string }): string {
 
 export function SessionCard({ c }: { c: Content }) {
   const s = byId(c.sessionId)
-  const title = s.title.replace(/^(Session|Deep Dive)\s+\d+:\s*/i, '')
-  const mark = badge(s)
-  const host = cohostLine(s)
+  const week = isWeek(s)
   const name = c.name.trim()
   const label = c.label.trim() || DEFAULT_LABEL
+  // the artwork already prints the event name, so the week card leads with the
+  // attendee instead of repeating it
+  const title = week ? label : s.title.replace(/^(Session|Deep Dive)\s+\d+:\s*/i, '')
+  const mark = week ? 'WHOLE WEEK' : badge(s)
+  // the artwork already prints the dates and the city, so the week card says
+  // something the poster cannot: how much programme there is
+  const when = week
+    ? `${programme.days.length} days · ${programme.counts?.sessions ?? 0} sessions`
+    : `${dayLabel(s)} · ${s.time}`
+  const host = week ? '' : cohostLine(s)
   const bodyRef = useRef<HTMLDivElement>(null)
 
   /**
@@ -62,7 +70,9 @@ export function SessionCard({ c }: { c: Content }) {
       return (last.getBoundingClientRect().bottom - top) / scale
     }
 
-    let size = Math.max(titleSize(c.bg, title), SCALE[c.bg][0])
+    // the week card has no co-host line, so it can carry a bigger title
+    const start = week ? Math.round(SCALE[c.bg][0] * 2.2) : Math.max(titleSize(c.bg, title), SCALE[c.bg][0])
+    let size = start
     heading.style.fontSize = `${size}px`
     let guard = 0
     while (contentBottom() > limit && size > 26 && guard < 40) {
@@ -70,7 +80,7 @@ export function SessionCard({ c }: { c: Content }) {
       heading.style.fontSize = `${size}px`
       guard += 1
     }
-  }, [c.sessionId, c.bg, title])
+  }, [c.sessionId, c.bg, title, week])
 
   return (
     <article
@@ -89,17 +99,16 @@ export function SessionCard({ c }: { c: Content }) {
         <p className="kicker">
           {mark ? <em>{mark}</em> : null}
           {mark ? <i className="dot" /> : null}
-          <span>
-            {dayLabel(s)} <b className="sep">·</b> {s.time}
-          </span>
+          <span>{when}</span>
         </p>
         <h1 className="title" style={{ fontSize: titleSize(c.bg, title) }}>
           {title}
         </h1>
         {host ? <p className="host">{host}</p> : null}
+        {week && name ? <p className="host host--name">{name}</p> : null}
       </div>
 
-      {name ? (
+      {name && !week ? (
         <div className="attend">
           <p className="attend__label">{label}</p>
           <p className="attend__name">{name}</p>

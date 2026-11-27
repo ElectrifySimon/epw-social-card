@@ -1,4 +1,5 @@
 import raw from '../data/programme.json'
+import { EVENT } from './types'
 
 export type Item = {
   day: number
@@ -24,11 +25,33 @@ export const programme = raw as unknown as Programme
 
 export const sessions: Item[] = programme.days.flatMap((d) => d.items.filter((i) => i.kind === 'session'))
 
+/**
+ * The card for someone attending the week rather than one session. It is not in
+ * the scraped programme, so it is built here and offered above Day 1.
+ */
+export const WEEK_ID = 'whole-week'
+
+export const weekItem: Item = {
+  day: 0,
+  time: EVENT.dates,
+  title: EVENT.title,
+  cohost: '',
+  speakers: [],
+  kind: 'week',
+  number: null,
+  id: WEEK_ID,
+}
+
+export function isWeek(item: Item): boolean {
+  return item.kind === 'week'
+}
+
 export function dayFor(item: Item): Day {
   return programme.days.find((d) => d.day === item.day) ?? programme.days[0]
 }
 
 export function byId(id: string): Item {
+  if (id === WEEK_ID) return weekItem
   return sessions.find((s) => s.id === id) ?? sessions[0]
 }
 
@@ -58,8 +81,13 @@ export function speakerLine(item: Item, limit = 3): string {
 
 export function search(query: string): Item[] {
   const q = query.trim().toLowerCase()
-  if (!q) return sessions
-  return sessions.filter((s) =>
+  const weekHit = ['whole week', 'the whole week', 'all week', 'attending', weekItem.title, weekItem.time]
+    .join(' ')
+    .toLowerCase()
+    .includes(q)
+  if (!q) return [weekItem, ...sessions]
+  const hits = sessions.filter((s) =>
     [s.title, s.cohost, s.speakers.join(' '), `day ${s.day}`, s.time].join(' ').toLowerCase().includes(q)
   )
+  return weekHit ? [weekItem, ...hits] : hits
 }
