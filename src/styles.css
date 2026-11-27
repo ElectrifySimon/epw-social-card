@@ -35,9 +35,13 @@ body,
   margin: 0;
 }
 
+html,
+body {
+  background: #002030;
+}
+
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background: #04121a;
   color: var(--ink);
 }
 
@@ -332,9 +336,9 @@ button:focus-visible {
   font-family: 'Inter', sans-serif;
   isolation: isolate;
   --l: 63px;
-  --t: 470px;
-  --w: 586px;
-  --bmax: 756px;
+  --t: 450px;
+  --w: 588px;
+  --bmax: 750px;
   --boxb: 742px;
   --rhythm: 14px;
 }
@@ -350,9 +354,9 @@ button:focus-visible {
 
 .card[data-bg='3'] {
   --l: 63px;
-  --t: 470px;
-  --w: 586px;
-  --bmax: 900px;
+  --t: 450px;
+  --w: 588px;
+  --bmax: 898px;
   --boxb: 910px;
   --rhythm: 16px;
 }
@@ -368,7 +372,7 @@ button:focus-visible {
 
 .card .bg {
   position: absolute;
-  inset: 0;
+  inset: -4px;
   background-size: cover;
   background-position: center;
   transform: translate3d(calc((var(--t, 0) - 0.5) * -20px), calc((var(--t, 0) - 0.5) * 14px), 0) scale(1.05);
@@ -433,23 +437,6 @@ button:focus-visible {
   z-index: 2;
 }
 
-/* a feathered wash, not a panel: lifts the type off the line art */
-.card .body::before {
-  content: '';
-  position: absolute;
-  inset: -54px -74px -50px -66px;
-  z-index: -1;
-  border-radius: 50%;
-  background: radial-gradient(
-    closest-side,
-    rgba(0, 26, 40, 0.68) 0 40%,
-    rgba(0, 26, 40, 0.44) 62%,
-    rgba(0, 26, 40, 0.16) 82%,
-    rgba(0, 26, 40, 0) 98%
-  );
-  pointer-events: none;
-}
-
 .card .kicker {
   display: flex;
   align-items: center;
@@ -481,7 +468,7 @@ button:focus-visible {
   font-size: 17px;
   line-height: 1.3;
   color: var(--ink-2);
-  text-shadow: 0 1px 8px rgba(0, 18, 30, 0.8);
+  text-shadow: 0 0 14px rgba(0, 22, 36, 0.95), 0 1px 4px rgba(0, 18, 30, 0.9);
 }
 
 .card .title {
@@ -491,7 +478,7 @@ button:focus-visible {
   line-height: 1.05;
   letter-spacing: -0.022em;
   color: #fff;
-  text-wrap: balance;
+  text-shadow: 0 0 20px rgba(0, 20, 34, 0.75), 0 2px 6px rgba(0, 16, 28, 0.6);
 }
 
 .card .time {
@@ -514,7 +501,7 @@ button:focus-visible {
   line-height: 1.35;
   font-weight: 600;
   color: #d7e8f0;
-  text-shadow: 0 1px 8px rgba(0, 18, 30, 0.85);
+  text-shadow: 0 0 14px rgba(0, 22, 36, 0.95), 0 1px 4px rgba(0, 18, 30, 0.9);
 }
 
 /* ---------------- the name box ---------------- */
@@ -523,7 +510,7 @@ button:focus-visible {
   position: absolute;
   right: 62px;
   bottom: calc(1080px - var(--boxb));
-  width: 356px;
+  width: 340px;
   padding: 20px 22px 22px;
   border-radius: 16px;
   border: 2px solid rgba(127, 212, 240, 0.55);
@@ -544,7 +531,7 @@ button:focus-visible {
 .card .attend__name {
   margin: 0;
   font-family: 'Archivo', sans-serif;
-  font-size: 31px;
+  font-size: 30px;
   font-weight: 700;
   line-height: 1.14;
   letter-spacing: -0.015em;

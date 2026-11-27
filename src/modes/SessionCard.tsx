@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef } from 'react'
 import { Content, EVENT } from '../lib/types'
 import { byId, cohostLine, dayFor, dayLabel } from '../lib/programme'
 import bg1 from '../assets/bg/bg-1.jpg'
@@ -39,6 +40,25 @@ export function SessionCard({ c }: { c: Content }) {
   const mark = badge(s)
   const host = cohostLine(s)
   const name = c.name.trim()
+  const bodyRef = useRef<HTMLDivElement>(null)
+
+  /**
+   * A long co-host line can push the block into the partner banner. Rather than
+   * guess per session, measure the block and step the title down until it fits.
+   */
+  useLayoutEffect(() => {
+    const body = bodyRef.current
+    const heading = body?.querySelector<HTMLElement>('.title')
+    if (!body || !heading) return
+    let size = titleSize(c.bg, title)
+    heading.style.fontSize = `${size}px`
+    let guard = 0
+    while (body.scrollHeight > body.clientHeight && size > 26 && guard < 24) {
+      size -= 1
+      heading.style.fontSize = `${size}px`
+      guard += 1
+    }
+  }, [c.sessionId, c.bg, c.showDayTheme, title])
 
   return (
     <article
@@ -54,7 +74,7 @@ export function SessionCard({ c }: { c: Content }) {
         <span>{EVENT.qrLabel}</span>
       </div>
 
-      <div className="body">
+      <div className="body" ref={bodyRef}>
         <p className="kicker">
           {mark ? <em>{mark}</em> : null}
           {mark ? <i className="dot" /> : null}
