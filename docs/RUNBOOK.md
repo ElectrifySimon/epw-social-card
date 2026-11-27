@@ -84,7 +84,7 @@ The picker also offers **All four days**, a synthetic entry built in `programme.
 
 ### The whole-week card
 
-Someone attending the week rather than one session picks All four days. The card then changes shape, because the artwork already prints the event name, the dates and the city:
+Someone attending the week instead of one session picks All four days. The card then changes shape, because the artwork already prints the event name, the dates and the city:
 
 - Kicker: `WHOLE WEEK · 4 days · 21 sessions`, taken from the programme counts. It says something the poster cannot.
 - Headline: the badge line, `I'm attending` by default, set at up to 2.2 times the normal starting size and shrunk by the same fit loop.
